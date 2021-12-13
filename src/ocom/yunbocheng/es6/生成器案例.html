@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成器案例</title>
+</head>
+<body>
+<script>
+    /*隔一秒打印111,隔两秒打印222,隔三秒打印333,依此类推*/
+    /*使用传统的方式来解决异步请求方案。以下代码称为 :回调地狱*/
+/*    setTimeout(() => {
+        console.log(111);
+        setTimeout(() => {
+            console.log(222);
+            setTimeout(() => {
+                console.log(333);
+            }, 3000)
+        }, 2000)
+    }, 1000)*/
+
+    /*接下来我们使用生成器函数的方式来完成以上的异步请求*/
+    /*先将这几个功能声明到不同的JS函数中*/
+    let time1 = () => {
+        setTimeout(function (){
+            console.log("1秒");
+            iterator.next();
+        },1000)
+    }
+
+    let time2 = () => {
+        setTimeout(function (){
+            console.log("2秒");
+            iterator.next();
+        },2000)
+    }
+
+    let time3 = () => {
+        setTimeout(function (){
+            console.log("3秒");
+        },3000)
+    }
+
+    /*直接这么调用这个时间代表的是：针对整个浏览器而言，隔一秒只执行time1，隔两秒执行time2
+    * 而不是等待第一个函数执行完2秒之后执行第三个，第三个执行三秒后结束程序。此时不是针对的上一个函数
+    * 而针对的是整个浏览器的时间。如果把三个函数的时间全部设置为1000，三个函数的值会一起输出。
+    * 我们的需求是：第一个函数执行完后2秒后执行第二个函数，第二个函数执行完成之后隔三秒执行第三个函数。
+    * 以下两种方式都是针对浏览器而言，打印的时间也是针对的浏览器，而不是上一个方法
+    * */
+/*    time1();
+    time2();
+    time3();
+
+    function add(){
+        time1();
+        time2();
+        time3();
+    }
+    add();*/
+
+    /*声明一个生成器函数，使用这个生成器函数来调用普通函数来完成异步请求*/
+    function * gen(){
+        yield time1();
+        yield time2();
+        yield time3();
+    }
+    let iterator = gen();
+    /*这个iterator可以省略，它相当于是一个异步请求的起点*/
+    iterator.next();
+</script>
+</body>
+</html>

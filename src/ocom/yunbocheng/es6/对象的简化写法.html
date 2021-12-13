@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的简化写法</title>
+</head>
+<body>
+<script>
+    let name = "张三";
+    let add  = function (){
+        alert(`加法运算！`);
+    }
+    /*注意：使用es6模式声明的这个对象的属性明必须与声明的变量名一致*/
+    const student = {
+        name,
+        add,
+        /*
+        es5的写法
+        subtraction:function (){
+            alert(`减法运算！`)
+        }*/
+        /*es6箭头函数写法*/
+/*        subtraction:()=>{
+            alert(`减法运算！`);
+        }*/
+        /*es6对象简化写法*/
+        subtraction(){
+            alert(`减法运算！`);
+            alert(`减法运算！`);
+        }
+    }
+    /*调用对象中的属性以及方法*/
+    student.subtraction();
+    alert(student.name);
+    student.add();
+</script>
+</body>
+</html>

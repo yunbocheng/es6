@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>const声明变量</title>
+</head>
+<body>
+<script>
+
+    /*const声明的常量必须存在初始值，否则会编译错误*/
+    /*const avg;  报错*/
+    const avg = 0;
+    /*const变量声明的是常量，是不可以被修改的*/
+    /*建议常量的变量名使用大写字母*/
+    const SCHOOL = "科技大学";
+    console.log(SCHOOL);
+
+    /*使用常量声明的数组中的内容是可以发生改变的，因为此时const指向的是数组的地址，而不是数组中的数据*/
+    const ARR = [1,true,'张三'];
+    console.log(ARR.length);
+    ARR.push("李四");
+    for (let i = 0; i < ARR.length; i++) {
+        console.log(ARR[i]);
+    }
+
+</script>
+</body>
+</html>

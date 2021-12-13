@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON（数据交换格式）</title>
+</head>
+<body>
+<script>
+    /*定义一个JSON格式的数据*/
+    var jsonObj = {"name":"程云博","age":20,"sex":"男"}
+    function getJson(){
+        /*访问JSON属性的方式*/
+        alert(jsonObj.name);
+        alert(jsonObj["age"]);
+        alert(jsonObj.sex);
+    }
+</script>
+<input type="button" value="获取JSON中的数据" onclick="getJson()"/>
+</body>
+</html>

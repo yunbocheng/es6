@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+<body>
+<script type="text/javascript">
+  /*Promise是ES6引入的异步编程新的解决方案。语法上Promise时是一个构造函数，
+  * 用来封装异步操作并可以获取其成功或者失败的结果。
+  * */
+
+  /*实例化Promise对象，这两个参数也是自定义的，一般使用resolve、reject。
+  注意：这两个参数是方法，而不是一个变量
+  第一个参数代表请求成功，第二个参数代表请求失败。
+  注意：调用方法名要与函数中的参数名保持一致才可以。*/
+  const p = new Promise(function (resolve, reject){
+      setTimeout(function (){
+          let data = `数据库中用户数据`;
+          // resolve()、reject()都是用来改变Promise对象的状态，
+          // resolve代表成功。reject代表失败。
+            resolve(data);
+          },1000)
+  });
+
+  // 调用 Promise 对象then方法
+  // 这个then方法中存在两个参数，两个参数都是函数，
+  // 第一个函数是请求成功时执行的函数。第二个函数是请求失败时执行的函数。
+  // 执行哪个函数要看声明Promise对象的时候调用的哪个方法 （resolve()、reject()）
+  // 成功时的参数一般使用value。不不成功的时候使用reason。是自定义的不是非要使用这两个名。
+  // value、reason是用来接收请求失败或者成功时的数据的。
+  p.then(function (value){
+      // value 值此时接收的就是请求成功的时候的data的值。
+      console.log(value);
+  },function (reason){
+      alert(reason);
+  })
+
+  /*实际开发中使用promise对象的格式*/
+  let myPromise = new Promise(function (resolve, reject){
+      // 异步操作
+      let status = '200';
+      if (status === '200'){
+          /*resolve代表成功状态*/
+          resolve("SUCCESS");
+      }else {
+          reject("FAIL");
+      }
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解构赋值</title>
+</head>
+<body>
+<script>
+
+    /*使用解构函数必须保证等号两边的模式、解构相同*/
+    /*数组的解构赋值*/
+    const ARR = [1,2,3,4];
+    let [number1,number2,number3,number4] = ARR;
+    console.log(number1);
+    console.log(number2);
+    console.log(number3);
+    console.log(number4);
+
+    /*对象的解构赋值*/
+    /*在JS中声明一个对象的方式有很多种，这里使用JSON直接赋值的方式*/
+    const student = {
+        name:"张三",
+        age:20,
+        sex:"男",
+        xiaopin:function (){
+            window.alert("我会说小品");
+        }
+    };
+
+    /*使用对象中的属性，以下是es5中使用对象属性的方式
+    * 注意：花括号中声明的变量名必须和对象中的属性名保持一致，否则就是undefined
+    * */
+    console.log(student.name);
+
+    /*此时使用es6的解构方式*/
+    let {name,age,sex,xiaopin} = student;
+    console.log(name);
+    console.log(age);
+
+    /*调用对象中的函数*/
+    xiaopin();
+
+    /*
+    * 总结：数据的解构赋值使用的是中括号 []
+    *      对象的解构赋值使用的是花括号 {}
+    *
+    * 语法格式都是一样的：
+    *   let [自定义名1,自定义名2,自定义名3] = 数组名
+    *   let {对象属性值,对象属性值,对象属性值} = 对象名
+    * */
+
+    // 不想赋值的元素就使用空格代替
+    let[a, ,c] = [1,2,3];
+    console.log(a);  // 1
+    console.log(c);  // 3
+
+    // 二维数组的形式
+    let[d,[[e],f]] = [1,[[2],3]];
+    console.log(d);  // 1
+    console.log(e);  // 2
+    console.log(f);  // 3
+
+
+    /*当被赋值的数量比数值多的时候，按照顺序匹配即可*/
+    let[g,j,k] = [1,[2,3],4]
+    console.log(g);  // 1
+    console.log(j);  // 2
+    console.log(k);  // 4
+
+    /*当被赋值的变量比数值少的时候，使用默认值undefined进行补充*/
+    let[q,w,r] = [1,2];
+    console.log(q);  // 1
+    console.log(w);  // 2
+    console.log(r);  // undefined
+
+    /*ES6支持存在默认值*/
+    let [x = "a",b] = [];
+    console.log(x);  // a
+    console.log(b);  // undefined
+
+    let [y = 'a',u = 'd'] = ['p','q'];
+    alert(y);   // p
+    alert(u);   // q
+
+    let [m,n='x'] = ['a',undefined];
+    console.log(m);  // a
+    console.log(n);  // x
+
+    let [z,v='x'] = ['a',null];
+    console.log(z);  // a
+    console.log(v);  // null
+
+    /*注意：如果从新赋的值为null，那么就改变为null，不使用默认值。
+        如果赋值的是undefined，那么就使用默认值。*/
+</script>
+
+</body>
+</html>

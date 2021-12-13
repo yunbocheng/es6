@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>void用法</title>
+</head>
+<body>
+    <!--
+        void一般用于超链接，点击完超连接可以执行一段JS代码，并且执行完毕之后不会跳转界面，
+        即使我们给定href=""，空字符串也会从新跳转到当前页面。
+    -->
+    <!--
+        这里需要给定一个javaScript，意思是告诉href属性，此时的属性值不是一个路径，而是一段JS代码。
+    -->
+    <a href="javaScript:void(0)">保留超链接的样式，执行一段JS代码，并且执行之后不会跳转页面，就连自己的界面也不会跳转</a>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+    <style>
+        span{
+            font-size: 10px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<script>
+    /*
+        判断用户名是否合法
+        1、用户名不能为空
+        2、用户名在6-14位之间
+        3、用户名不能包含特殊字符
+    */
+    window.onload = function (){
+        /*获取用户名*/
+        var user = document.getElementById("myName");
+        /*定义一个关于用户名错误信息的dom对象*/
+        var errorMessage = document.getElementById("span1");
+        user.onblur = function (){
+            /*去除用户名前后的空白*/
+            userName = user.value.trim();
+            /*判断用户名是否为空*/
+            if (userName === ""){
+                /*此时代表是空的，默认调用Boolean(userName)*/
+                /*此时代表的空的，给出一个错误提示，用户名输出不能为空*/
+                /*因为已经给定了span的样式，这里直接给定Text即可*/
+                errorMessage.innerText = "用户名不能为空！";
+            }else {
+                /*此时代表用户名不为空*/
+                /*判断用户名的长度必须在6到14位之间*/
+                if (userName.length < 6 || userName.length > 14){
+                    /*证明此时的长度是不合法的，提示错误信息*/
+                    errorMessage.innerText = "用户名长度必须在6到14位之间！";
+                }else {
+                    /*定义一个正则表达式，只存在字母和数字，不包含特殊字符*/
+                    var regExp = /^[A-Za-z0-9]+$/;
+                    /*调用正则表达式的方法，判断用户名是否合法*/
+                    if (regExp.test(userName)){
+                        /*此时说明正则表达式正确！*/
+
+                    }else {
+                        /*此时说明正则表达式不正确！*/
+                        errorMessage.innerText = "用户名不能包含特殊符号！";
+                    }
+                }
+            }
+        }
+     user.onfocus = function (){
+            if (errorMessage.innerText !== ""){
+                /*清空不合法的用户名*/
+                user.value = "";
+                errorMessage.innerText = "";
+            }
+        }
+        /*判断两次输入的密码是否一致*/
+        var psdOne = document.getElementById("myPsdOne");
+        var span3Error = document.getElementById("span3");
+        document.getElementById("myPsdTwo").onblur  = function (){
+            /*获取第一个的密码*/
+            var psdOneNumber = psdOne.value;
+            /*获取第二个密码*/
+            var psdTwoNumber = document.getElementById("myPsdTwo").value;
+            /*判断两个密码是否一致*/
+            if (psdOneNumber != psdTwoNumber){
+                /*说明此时两次输入的密码不相等，提示错误信息*/
+                span3Error.innerText = "两次输入的密码不一致！";
+            }else {
+                /*两次密码相等*/
+            }
+        }
+
+        /*给定密码框重新获取删除错误的密码并删除错误信息*/
+        var psdTwo = document.getElementById("myPsdTwo");
+        psdTwo.onfocus = function (){
+            /*判断是否存在错误信息*/
+            if (span3Error.innerText !== ""){
+                /*清空错误密码*/
+                psdTwo.value = "";
+                /*清空错误信息*/
+                span3Error.innerText = "";
+                }
+        }
+
+        /*判断邮箱是否合法*/
+        var myEamil = document.getElementById("myEmail");
+        var mySpan4 = document.getElementById("span4");
+        document.getElementById("myEmail").onblur  = function (){
+            /*定义一个判断邮箱格式是否正确的正则表达式*/
+            var resExp = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;
+            /*获取用户输入的邮箱*/
+            var userEmail = myEamil.value;
+            if (resExp.test(userEmail)){
+                /*此时代表输入的邮箱正确*/
+            }else {
+                /*此时代表输入的邮箱不正确*/
+                mySpan4.innerText = "邮箱格式错误！";
+            }
+        }
+        /*绑定一个邮箱错误再次输出时删除错误信息并删除邮箱的错误值*/
+        myEamil.onfocus = function (){
+            if (mySpan4.innerText != ""){
+                /*清除错误的邮箱值*/
+                myEamil.value = "";
+                /*清除错误的信息*/
+                mySpan4.innerText = "";
+            }
+        }
+
+        /*
+            表单验证中还存在一个问题，此时有没有错误信息这个表单都会提交，这里要进行处理
+            只有当表单的信息全部合法且不为空的时候，才会进行提交。
+        */
+        /*此时不适用submit按钮，因为只要点击submit这个按钮就会将表单中的信息全部提交*/
+        /*此时将这个按钮设置为button按钮，把这个button转化为submit按钮*/
+        /*给这个button按钮绑定单机事件*/
+        document.getElementById("myBut").onclick = function (){
+            /*判断哪种情况下需要提交表单，哪种情况不需要提交表单*/
+            /*
+            * 也就是当每个信息框之后的错误信息不存在的时候，证明此时信息是全部正确的，可以提交表单
+            * 但是，当用户什么也不输入的时候，就不会触发onblur事件，只有当每个信息框都获取到了焦点并且失去了
+            * 焦点，并且没有错误信息，此时才真正的代表用户填写的全部信息是正确的。
+            * */
+            /*我们这里不手动的触发userName、psdTwo、Email的获取焦点以及失去焦点事件，让JS代码自动触发这两个事件*/
+            /*此时不是绑定事件，是调用每个dom对象的事件函数*/
+            user.focus();
+            user.blur();
+
+            psdTwo.focus();
+            psdTwo.blur();
+
+            myEamil.focus();
+            myEamil.blur();
+
+            /*
+                以上的所有的文本框都触发了获取焦点事件以及失去焦点事件，此时还有错误提示，就证明表单信息存在错误
+                当以上的表单全部为空的时候，说明所有的信息全部正确。
+            */
+            if (errorMessage.innerText == "" && span3Error.innerText == "" && mySpan4.innerText == "" ){
+                /*此时代表不存在错误信息*/
+                /*获取表单对象，之后调用这个表单的submit()方法进行表单的提交*/
+                var myForm = document.getElementById("MyForm");
+                /*可以设置提交的地址*/
+                myForm.action = "#";
+                myForm.submit();
+            }else {
+                /*此时代表存在错误信息，不会被提交*/
+
+            }
+
+        }
+        /*当用户点击重置的时候，让所有的饿错误信息全部消失*/
+        document.getElementById("myReset").onclick = function (){
+            /*让全部的错误信息消失*/
+            errorMessage.innerText = "";
+            span3Error.innerText = "";
+            mySpan4.innerText = "";
+        }
+    }
+</script>
+
+<form id="MyForm" method="get">
+<table>
+    <tr>
+        <th>
+            姓名：
+        </th>
+        <td>
+            <input type="text" name="name" id="myName"/>
+            <span id="span1"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            密码：
+        </th>
+        <td>
+            <input type="text" name="psdOne" id="myPsdOne"/>
+            <span id="span2"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            确认密码：
+        </th>
+        <td>
+            <input type="text" name="psdTwo" id="myPsdTwo"/>
+            <span id="span3"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            邮箱：
+        </th>
+        <td>
+            <input type="text" name="email" id="myEmail"/>
+            <span id="span4"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="button" value="提交" id="myBut"/>
+        </td>
+        <td>
+            <input type="reset" value="重置" id="myReset"/>
+        </td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

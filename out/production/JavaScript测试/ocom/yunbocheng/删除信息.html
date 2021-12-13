@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除内容提示信息</title>
+</head>
+<body>
+<script>
+    function del(){
+        /*这个函数存在返回值，返回值是boolean类型*/
+        var result = window.confirm("亲，确认删除数据嘛？");
+        /*这个数据的是否删除根据是根据返回值进行判断的*/
+        if (result){
+            /*此时代表确认删除，以下代码就执行删除的操作*/
+            document.write("<font style='color: red;font-size: 40px'>删除数据成功！</font>");
+        }else {
+            /*此时代表取消删除，就执行不删除的操作*/
+
+        }
+    }
+</script>
+<input type="button" value="删除" onclick="del()">
+</body>
+</html>

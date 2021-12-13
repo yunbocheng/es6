@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成器函数的参数传递</title>
+</head>
+<body>
+<script>
+    function * gen(arg){
+        console.log(arg);
+        yield 111;
+        yield 222;
+        yield 333;
+    }
+
+    /*执行迭代器对象*/
+    let iterator = gen(`AAA`);
+    /*第一个next()打印的是使用yield关键字分割的函数代码块的第一部分的内容以及yield的内容*/
+    console.log(iterator.next());
+    /*next()方法中也可也i存在参数值,这个参数值并不是代表当前yield的返返回值,而是代表上一个yield的返回值*/
+    console.log(iterator.next("BBB"));
+
+
+
+</script>
+</body>
+</html>

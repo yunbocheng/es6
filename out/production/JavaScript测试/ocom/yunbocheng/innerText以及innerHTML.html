@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>innerText与innerHTML</title>
+    <style>
+        #myDiv{
+            background-color: red;
+            height: 100px;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+    <!--我们索要完成的任务是：在div的盒子中加入内容-->
+    <script type="text/javascript">
+        window.onload = function (){
+            /*触发按钮单机事件将信息添加到div盒子中*/
+            document.getElementById("But").onclick = function (){
+                /*在div上添加信息，先获取div盒子的dom对象，然后调用方法向其中添加信息*/
+                document.getElementById("myDiv").innerHTML = "<font style='font-size: 20px;color: white'>今天的天气不错</font>";
+                /*innerHTML会将后边的字符串当作是一段HTML代码执行，但是innerText只是将后边的字符串当做一段普通的字符串*/
+                document.getElementById("myDiv").innerText = "<font style='font-size: 20px;color: white'>今天的天气很不错</font>";
+            }
+        }
+    </script>
+    <input type="button" value="添加信息" id="But"/>
+    <div id="myDiv"></div>
+</body>
+</html>

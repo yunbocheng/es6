@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试number类型</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /*JS中的Number包含很多的数据种类*/
+        /*
+            Infinity：代表的是无穷大
+        */
+        var result = 10/0;
+        alert(result); // 此时的输出结果就是：Infinity无穷大
+
+        /*
+        * NaN：代表的是 Not A Number （不是一个数字）
+        *     这种情况发生在本来输出的应该是一个数字的时候，但是确输出的不是数字，
+        *      此时输出NaN
+        * */
+        var test = 10/"abc";
+        alert(test);  // NaN
+
+        var test02 = 10 + "abc";
+        alert(test02); // 此时输出的是：10abc，此时是字符串的拼接，输出的为字符串，而不是NaN
+
+        // 在JS中 10/3的结果为多少
+        var div = 10/3;
+        // 在Java中两个整数做除法，最后输出的一定是一个整数（即整数3)
+        // 在JS中两个整数做除法，其结果不一定是整数，可以是任意位的小数
+        alert(div); // 3.3333333335
+
+        // isNaN()函数的用法，当不是一个数字的时候返回true，当是一个数字的时候返回false
+        function sum(a,b){
+            if (isNaN(a) || isNaN(b)){
+                alert("两个数字都必须是数字！");
+                return 0;
+            }else {
+                return a+b;
+            }
+        }
+
+        // 调用函数，测试isNaN
+        var sum1 = sum(1,"abc");
+        alert(sum1); // 结果：undefined
+
+        var sum2 = sum(1,2);
+        alert(sum2); // 结果：3
+
+        /*
+        * parseInt会将字符串转换为数字，并且去除小数位转换为整数
+        * */
+        alert(parseInt("3.14"));  // 3
+        alert(parseInt(3.14));   // 3
+
+        /*
+        * parseFloat会将字符串转换为数字，但是不会去除小数部分，这个就是与parseInt的区别
+        * */
+        alert(parseFloat("3.14") + 1);
+        alert(parseFloat("3.45"));
+
+        /*
+        * 向上取整
+        * */
+        alert(Math.ceil(3.21)); // 输出结果是：4
+    </script>
+</body>
+</html>

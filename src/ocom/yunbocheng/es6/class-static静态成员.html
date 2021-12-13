@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>static静态成员</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*声明一个类*/
+    class Phone{
+        static name = "Huawei"
+        static change(){
+            console.log("我是一个静态成员方法！");
+        }
+        price = 30000;
+
+        constructor() {
+
+        }
+    }
+    /*实例化对象*/
+    /*
+        使用static声明的成员变量是属于类的，而不是属于实例对象的。需要使用类来调用
+        不使用static修饰的成员变量是属于实列对象的，不属于类
+
+        static修饰 ： 使用类名调用，不可以使用实例化对象调用。
+        非static修饰： 使用实例化对象调用，不可以使用类名调用。
+    */
+    let phone = new Phone();
+    console.log(phone.name);  //  undefined
+    console.log(Phone.name);  //  Huawei
+
+    console.log(phone.price); //  30000
+    console.log(Phone.price); //  undefined
+
+    console.log(phone.change()); // 直接报错
+    console.log(Phone.change()); // 可以调用
+</script>
+</body>
+</html>

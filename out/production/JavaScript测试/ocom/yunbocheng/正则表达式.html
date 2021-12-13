@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式的使用方式</title>
+    <style>
+        #myDiv{
+            float: right;
+            margin-right: 1090px;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+        #myText{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+  <!--
+    正则表示式的创建有两种方式。
+        1、var resExp = /正则表达式/flags
+        2. var resExp = new ResExp("正则表达式","RegExp")
+
+    正则表达式中的一个重要方法
+    boolean test("用户输入的正则表达式") ：这个方法是用于判断用户输入的邮箱是否合法。
+                                       合法返回true，不合法返回false
+
+  -->
+
+  <script>
+      /*创建一个正则表达式对象*/
+      var resExp = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;
+      window.onload = function (){
+          /*给按钮绑定单机事件，该事件解决的问题是：用于判断用户输入的表达式和正则表达式是否匹配*/
+          document.getElementById("verify").onclick  = function (){
+              var value = document.getElementById("myText").value;
+              /*调用正则表达式的方法*/
+              if (resExp.test(value)){
+                  /*获取到div对象，给div盒子中加入信息*/
+                  document.getElementById("myDiv").innerHTML = "<font style='color: red;font-size: 10px;margin-right: 150px'>邮箱格式正确！</font>"
+              }else {
+                  document.getElementById("myDiv").innerHTML = "<font style='color: red;font-size: 10px;margin-right: 150px'>邮箱格式不正确！</font>"
+              }
+          }
+
+          /*当邮箱的格式不正确的时候重新输入的时候，此时需要清除上一次的错误提示*/
+          /*定义一个获取焦点的事件，当触发这个事件的时候，将上次的错误信息清空*/
+          document.getElementById("myText").onfocus = function (){
+              /*清空内容*/
+              document.getElementById("myDiv").innerHTML="邮箱必须包含数字、字母、@符号以及域名信息";
+          }
+      }
+  </script>
+
+  <div>
+      <!--使用一个文本框，用来接收用户输入的字符串-->
+      <input type="text" id="myText"/>
+
+      <!--在文本框之后加入一个div，用来显示正则表达式匹配的结果-->
+      <div id="myDiv"></div>
+  </div>
+  <br/><br/>
+  <div>
+      <!--创建表单验证中的密码验证。使用正则表达式-->
+      <input type="button" id="verify" value="验证"/>
+  </div>
+</body>
+</html>

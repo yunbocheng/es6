@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set集合</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*
+        ES6提供了新的数据结构 Set集合。他类似于数组，但是其中存储的数据都是唯一的。
+        集合也是一个对象。实现了iterator接口，所以可以使用扩展运算符以及 for...of进行遍历。
+        集合的属性和方法：
+            1. size  返回集合的元素个数
+            2. add 增加一个新的元素(在集合的后面添加)，注意：返回当前集合，而不是重新创建一个集合。
+            3. delete 删除元素返回boolean值
+            4. has: 检测集合中是否包含某个元素，返回boolean
+            5. clear ： 清空集合
+        注意；添加和删除操作都不会创建一个新的集合，而是改变原来集合中的数据。
+    * */
+    // 声明一个Set集合
+    let list = new Set();
+    console.log(list); // {} 此时输出的就是一个空集合
+
+    // 定义一个数组，Set集合可以使用数组来构建一个Set集合
+    let arr = [`今天`,`明天`,`后天`,`今天`];
+    let list2 = new Set(arr);
+    console.log(list2);  // {'今天', '明天', '后天'} set集合自动去重。
+
+    /*测试Set集合的属性以及方法*/
+    let list3 = new Set([`大事儿`,`小事儿`,`好事儿`,`坏事儿`]);
+    /*查看集合的长度*/
+    console.log(list3.size);  // 4
+
+    /*添加一个新的元素*/
+    let list4 = list3.add("天下事儿");
+    console.log(list4);
+
+    /*删除集合中的元素，返回值为boolean类型*/
+    let result = list4.delete("小事儿");
+    console.log(result);  // true
+
+    /*判断集合中国是否存在某个指定的元素*/
+    let b = list4.has("大事儿");
+    console.log(b);   // true
+
+
+    let extent = list4.size;
+    console.log(extent);
+
+
+    /*数组去重*/
+    let arr1 = [1,2,3,4,5,2,3,4,5];
+    /*将数组转换为一个Set集合进行自动去重，在将这个集合使用扩展运算符转换为一个数组*/
+    /*扩展运算符：可以将数组、集合转换为一个普通数据列表*/
+    /*
+        let list5 = new Set([...arr1]);
+        这段代码最终输出的是一个集合，而不是一个数组。
+        原理：他将arr1这个数组使用扩展运算符拆分为：1,2,3,4,5,2,3,4,5
+             之后在外边嵌套了一个[]，此时又变为了一个 [1,2,3,4,5,2,3,4,5]数组
+             其实构建Set集合的时候，使用的还是 let list5 = new Set([1,2,3,4,5,2,3,4,5]);
+    */
+    let list5 = [...new Set(arr1)];  // new Set(arr1)的样子：1,2,3,4,5 使用的时候需要拼接上中括号[]，让他变为一个数组
+    console.log(list5); // [1,2,3,4,5]
+
+    /*两个数组取交集*/
+    let arr2 = [1,2,3,4,5,2,3,4];
+    let arr3 = [3,4,5,3,2,6];
+    /*将数组arr2去重后变为一个数组，调用数组的filter过滤器。*/
+    /*使用filter函数的原理：filter会自动创建一个数组，将运行结果返回true的元素存储到这个新的数组中
+    * 此时的 result3其实是一个数组，这个数组中存储的是 arr2与arr3中都存在的元素
+    * */
+    let result3 = [...new Set(arr2)].filter(items => {
+        /*这个items是一个个Number类型的数据，不是一个存储Number数值的数组。并且这些数据是arr2去重之后的数据*/
+        /*将数组arr3去重，获取到arr3的Set集合，使用Set集合中has()方法来判断是否存在这个元素*/
+        let judge = new Set(arr3);
+        if (judge.has(items)){
+            return true;
+        }else {
+            return false;
+        }
+    })
+    console.log(result3);  // [2,3,4,5]
+
+    /*使用箭头函数简化以上写法*/
+    let result4 = [...new Set(arr2)].filter(items => new Set(arr3).has(items));
+    console.log(result4);  // [2,3,4,5]
+
+    /*两个数组取并集。思想：使用扩展运算符将两个数组合并为一个数组*/
+    let union = [...new Set([...arr2,...arr3])];
+    console.log(union);
+
+    /*两个数组取差集：就是arr2中存在在arr3中不存在，在arr3中存在在arr2中不存在的元素*/
+    /*以下这行代码是：判断arr2在arr3中没有的元素*/
+    let result5 = [...new Set(arr2)].filter(items => !(new Set(arr3).has(items)));
+    console.log(result5); // [1]
+
+    /*以下这行代码是：判断arr3在arr2中没有的元素*/
+    let result6 = [...new Set(arr3)].filter(items => !(new Set(arr2).has(items)));
+    console.log(result6);  // [6]
+
+    /*然后取这两个数组的并集*/
+    let and = [...result5,...result6];
+    console.log(and);  // [1.6]
+
+    /*清空Set集合*/
+    let list6 = list4.clear();
+    console.log(list6);  // undefined
+</script>
+</body>
+</html>

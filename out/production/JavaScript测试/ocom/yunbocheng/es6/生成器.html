@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成器</title>
+</head>
+<body>
+<script>
+    /*生成器其实是一个特殊函数*/
+    /*生成器函数是ES6提供的一种异步编程解决方案，语法行为与传统函数完全不同*/
+    /*以前我们使用异步编程的方式是：ajax*/
+
+    function * gen(){
+        console.log("hello");
+    }
+    /*
+        生成器函数返回值是一个迭代器，ES5中我们直接调用函数就可以执行函数并输出相应的结果
+        而在ES6中需要使用迭代器的next()方法来获取函数中的执行结果
+    */
+    let iterator = gen();
+    iterator.next();  // 输出结果为：hello
+
+    /*在生成器函数中存在一个关键字 yield，这个是函数代码的分隔符，可以将函数中的代码进行分割 */
+    /*以下使用 yield 关键字将函数中的代码拆分为了4块 使用迭代器循环方式可以获取到 yield对应的内容*/
+    function * gen1(){
+
+        yield '一只没有耳朵';
+
+        yield '一只没有尾巴';
+
+        yield '真奇怪';
+    }
+    /*调用函数，调用生成器函数返回的是一个迭代器对象*/
+    let iterator1 = gen1();
+    console.log(iterator1.next());  // {value: '一只没有耳朵', done: false}
+    console.log(iterator1.next());  // {value: '一只没有尾巴', done: false}
+    console.log(iterator1.next());  // {value: '真奇怪', done: false}
+    console.log(iterator1.next());  // {value: undefined, done: true}
+    /*
+        通过以上结果可以看出，一共存在三个yield，
+        当打印第四个的时候，value为undefined,
+        done为true，证明是使用yield将函数体进行了分割。
+    */
+
+
+    /*使用for...of 迭代器方式来获取yield的内容*/
+    for (const string of iterator1) {
+        console.log(string);
+    }
+</script>
+</body>
+</html>

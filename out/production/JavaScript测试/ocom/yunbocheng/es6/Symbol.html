@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol数据类型</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*
+        Symbol是es6引入的一个新的数据类型，表示独一无二的。他是JS的第七种数据类型
+        是一种类似于字符串的数据类型。
+    */
+    /*
+    * Symbol数据类型的特点：
+    *   1. Symbol的值是唯一的，用来解决命名冲突问题
+    *   2. Symbol值不能与其他数据进行运算
+    *   3. Symbol定义的对象属性不能使用for...in循环遍历，但是可以使用Reflect.ownKeys来获取对象的所有键名。
+    * */
+
+    // 创建一个Symbol
+    let s = Symbol();
+    let s2 = Symbol("尚硅谷");
+
+    // 使用Symbol.for创建
+    let s3 = Symbol.for("尚硅谷");
+
+    /*Symbol的用法，给对象添加属性和方法的*/
+    /*给对象添加两个方法 up down*/
+
+</script>
+</body>
+</html>

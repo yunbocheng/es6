@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子类对父类方法的重写</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*父类*/
+    class Phone{
+        constructor(brand,price) {
+            this.brand = brand;
+            this.price = price;
+        }
+
+        call(){
+            console.log("我是父类的call方法");
+        }
+    }
+    /*子类*/
+    class SmartPhone extends Phone{
+        constructor(brand2,price2,color) {
+            /*这个是准备继承父类的构造方法*/
+            super(brand2,price2);
+            this.color = color;
+        }
+
+        /*重写父类的call()方法*/
+        call() {
+            /*
+                这个写的意义是：子类中的call()方法调用父类的call()方法。
+                我们在这里不使用父类的方法，我们自己重写一个call()方法。
+                super.call();
+            */
+            console.log("我是子类的call方法！重写了父类的call方法")
+        }
+    }
+    /*实例化子类*/
+    let sp = new SmartPhone();
+    /*调用子类重写父类的call方法*/
+    sp.call();
+</script>
+</body>
+</html>

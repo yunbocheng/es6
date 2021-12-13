@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试typeof的使用</title>
+</head>
+<body>
+<script type="text/javascript">
+    function testTypeof(a , b){
+        if (typeof a == "number" && typeof b == "number"){
+            var consequence = typeof a == "number";
+            alert(consequence); // 输出的结果为 ：true
+            return a+b;
+        }else {
+            alert(a + "," + b + "必须全部为数字！");
+        }
+    }
+
+    // 调用testTypeof方法(参数不正确)
+    var result = testTypeof(false,"abc");
+    alert(result); // 此时输出的结果是: undefined 因为此时不符合条件，没有返回值，所以使用的是默认值 undefined 
+    
+    // 调用testTypeof方法(参数正确)
+    var result = testTypeof(1,2);
+    alert(result); // 此时输出的结果是：3，此时的判断结果是正确的
+
+    var i;
+    alert(typeof  i); // undefined
+    var k = 10;
+    alert(typeof k); // number
+    var j = null;
+    alert(typeof j); // object
+
+    var object = new Object();
+    alert(typeof object);  // object
+
+    function sum(a,b){
+
+    }
+
+    alert(typeof sum); // function
+</script>
+</body>
+</html>

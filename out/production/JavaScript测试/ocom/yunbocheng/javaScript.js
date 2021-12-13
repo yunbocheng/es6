@@ -1,0 +1,1 @@
+window.alert("外部JavaScript样式");

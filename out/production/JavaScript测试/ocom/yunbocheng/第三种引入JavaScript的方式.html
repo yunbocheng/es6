@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第三种引入JavaScript的方式</title>
+</head>
+<body>
+    <!--<script type="text/javascript" src="javaScript.js"></script>-->
+    <script type="text/javascript">
+
+        /*此时只声明了一个函数，这会函数不调用是不会执行的。*/
+        function getName(a,b) {
+            alert(a+b);
+        }
+
+        getAge = function (age){
+            name = "程云博";
+            window.alert(age);
+        }
+        getAge(20);
+        alert("name = " + name);
+
+
+
+    </script>
+    <!--这个地方的true类型会替换为1，输出的结果为2 false类型会替换为0，输出结果为1-->
+    <button name="myButton" onclick="getName(1,false);">按钮</button>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取下拉列表的value值</title>
+</head>
+<body>
+
+<!--第一种获取下拉菜单的value值，使用事件句柄的方式
+<select name="dropDown" id="mySelect" onchange="alert(this.value)">
+    <option value="河北省">河北省</option>
+    <option value="山西省">山西省</option>
+    <option value="陕西省">陕西省</option>
+    <option value="湖南省">湖南省</option>
+    <option value="湖北省">湖北省</option>
+</select>-->
+
+<script>
+    window.onload = function (){
+        var select = document.getElementsByClassName("mySelect");
+        select.onchange = function (){
+            alert(select.value);
+        }
+    }
+</script>
+<!--第二种获取下拉列表value值的方式，使用脚本块-->
+<select name="dropDown" id="mySelect" onchange="alert(this.value)">
+    <option value="河北省">河北省</option>
+    <option value="山西省">山西省</option>
+    <option value="陕西省">陕西省</option>
+    <option value="湖南省">湖南省</option>
+    <option value="湖北省">湖北省</option>
+</select>
+</body>
+</html>

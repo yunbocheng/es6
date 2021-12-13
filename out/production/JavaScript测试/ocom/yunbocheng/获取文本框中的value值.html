@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取文本框中的value值</title>
+</head>
+<body>
+<script>
+
+    //获取文本框中的value值
+  window.onload = function (){
+      document.getElementById("myBut").onclick = function (){
+          // 鼠标单机事件的时候获取到文本框输出的value值
+          var elementById = document.getElementById("myText");
+          /*此时的elementById是一个input标签的对象*/
+          alert(elementById); // [object HTMLInputElement] 这个代表是一个Html页面中的Input元素
+          // 获取文本框中的value值，使用标签中的属性来获取对应的属性值
+          alert(elementById.value);
+      }
+  }
+
+  // 修改文本框中的value值
+    window.onload = function (){
+      document.getElementById("myBut").onclick = function (){
+          /*
+            当触发按钮单机事件的时候，不论以前用户在文本框中输出的是什么值，此时都会被重新赋值为lisi
+            只有当鼠标单击事件发生的时候才会触发这个事件，否则不会改变文本框中的值
+        */
+          document.getElementById("myText").value = "lisi";
+      }
+    }
+</script>
+<input type="text" id="myText"/>
+<input type="button" value="按钮" id="myBut"/>
+</body>
+</html>

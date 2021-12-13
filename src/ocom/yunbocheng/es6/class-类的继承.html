@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6类的继承</title>
+</head>
+<body>
+<script>
+    /*定义一个父类*/
+    class Phone{
+        /*构造函数*/
+        constructor(brand,price) {
+            this.brand = brand;
+            this.price = price;
+        }
+        /*父类的成员变量*/
+        make = `中国制造`;
+        /*父类的成员方法*/
+        call(){
+            console.log("我是一个父类方法！")
+        }
+    }
+
+    /*定义一个子类让其继承父类*/
+    class SmartPhone extends Phone{
+        // 构造方法
+        constructor(brand1,price1,color,size) {
+            /*
+                这里继承什么要看父类中有什么属性，这个继承要使用的是父类中this那几段代码
+                子类中的形参名不一定和父类中的构造方法中的形参名保持一致。
+            */
+            super(brand1,price1);
+            this.color = color;
+            this.size = size;
+        }
+
+        // 成员方法
+        photo(){
+            console.log("拍照!");
+        }
+        playGame(){
+            console.log("玩游戏！")
+        }
+    }
+    /*定义一个子类的实例对象*/
+    let sp =  new SmartPhone("1+",3000,"black",4.7);
+    console.log(sp);
+    /*使用父类中成员变量*/
+    console.log(sp.make);
+    /*调用父类的成员方法*/
+    console.log(sp.call());
+</script>
+</body>
+</html>

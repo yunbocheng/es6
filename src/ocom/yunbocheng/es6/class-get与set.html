@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>get与set方法</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*get与set方法*/
+    class Phone{
+        constructor(price) {
+            this.price = price;
+        }
+
+        get price(){
+            console.log("价格属性被获取到了");
+            return 30000;
+        }
+        /*set方法必须包含一个形参，这个形参用来获取用户修改的数据值*/
+        set price(value){
+            console.log("价格发生了变化！")
+        }
+    }
+    /*实例化对象*/
+    let sp = new Phone(30000);
+    sp.price = 444;
+</script>
+</body>
+</html>

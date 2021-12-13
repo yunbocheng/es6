@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>将一个文本框的值换衣到另一个文本框</title>
+</head>
+<body>
+    <script>
+        window.onload = function (){
+            document.getElementById("myBut").onclick = function (){
+                /*首先要获取到被转换的文本框的value值*/
+                var value1 = document.getElementById("text1").value;
+                /*获取到转换文本的value值，将第一个文本中的值赋值给第二个文本框中的value值*/
+                document.getElementById("text2").value = value1;
+            }
+        }
+    </script>
+
+    <!--设置一个按钮，用来触发转换文本事件-->
+    <input type="button" id="myBut" value="进行转换"/>
+
+    <!--被转换的文本框内容-->
+    <input type="text" name="myText1" id="text1"/>
+    <!--转换的文本框的内容-->
+    <input type="text" name="myText2" id="text2"/>
+
+    <!--关键字this的使用，this代表的是当前的标签对象-->
+    <!--
+        使用句柄事件的方式获取该标签的属性
+        因为是在Html标签中，所以不可以使用getElementById的方式来获取到当前的dom对象，也就是节点对象
+        所以此时需要使用关键字 this ，此时的this就是代表当前的dom对象
+
+       此时的this.value代表的就是这个dom对象的value值，也就是文本框的value值
+    -->
+    <input type="text" name="myText" onblur="alert(this.value = '李四')"/>
+</body>
+</html>

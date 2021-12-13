@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去除表单前后空白</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*通过鼠标单机事件获取用户名，并且去除前后空白*/
+    window.onload = function (){
+        window.document.getElementById("myBut").onclick = function (){
+            var value = document.getElementById("userName").value;
+            /*调用去除字符串前后空白的方法*/
+            value = value.trim();
+            alert(value);
+        }
+    }
+</script>
+
+<input type="text" id="userName"/>
+
+<input type="button" id="myBut" value="按钮"/>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS代码的执行顺序</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    /*
+    * 函数a在页面加载的时候进行注册。
+    * 函数b在页面加载完毕后注册。
+    *
+    * 只有页面全部加载完毕才会触发函数a，函数a执行才会将函数b进行注册。函数b只有在发生鼠标反击事件的时候才会被触发。
+    * */
+    window.onload = function myHtml(){ // 函数a
+        window.document.getElementById('myBtu').onclick = function myBtu(){ //函数b
+            alert("鼠标被单机了...");
+        }
+    }
+</script>
+<button id="myBtu">按钮</button>
+</body>
+</html>

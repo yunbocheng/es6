@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册事件的两种方式</title>
+
+</head>
+<body>
+
+<!--按钮1使用第一种绑定事件的方式，使用事件句柄，事件句柄在标签中以属性的形式存在-->
+<button id="myBut1" onclick="myBtu1()">按钮1</button>
+<input type="button" value="按钮2" id="myBut2"/>
+<button id="myBut3">按钮3</button>
+<button id="myBut4">按钮4</button>
+
+
+<script type="text/javascript">
+    //点击按钮1触发的函数。使用的是事件句柄的方式
+    function myBtu1(){
+        alert("按钮1被点击了....");
+    }
+
+
+    /*按钮2被点击时触发大的时间，使用最原始的方式*/
+    function myBtu2(){
+        alert('按钮2被单机了');
+    }
+    var elementBtu = document.getElementById("myBut2");
+    /*注意：第二种绑定和事件的方式赫第一种不一样，第一种是调用回调函数需要加上小括号，而这种不用加小括号，直接给一个函数名即可*/
+    elementBtu.onclick = myBtu2;
+
+
+    /*使用匿名函数的方式来绑定事件*/
+    var element = document.getElementById("myBut3");
+    element.onclick = function (){
+        alert("按钮3被单机了....");
+    }
+
+    /*极简化开发写法*/
+    document.getElementById("myBut4").onclick = function (){
+        alert('按钮4被单机了...');
+    }
+</script>
+
+</body>
+</html>

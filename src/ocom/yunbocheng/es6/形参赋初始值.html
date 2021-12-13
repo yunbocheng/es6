@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>形参赋初始值</title>
+</head>
+<body>
+<script>
+    /*定义一个含有形参的方法，并且形参是存在默认值的*/
+    let add = (a,b,c=10) => {
+        return a + b + c;
+    }
+    /*调用函数，给a和b传递值，c使用默认值*/
+    let result = add(1,2);
+    alert(result);  // 输出值为13，当用户没有改变这个形参值的时候，使用默认值10
+
+    let result2 = add(1,2,3);
+    alert(result2);  // 输出值为6
+
+    /*注意：尽量把含有默认值的变量写在最后*/
+    let add1 = (a,c=10,b) =>{
+        return  a + b + c;
+    }
+    /*调用函数，给形参进行赋值*/
+    let result3 = add1(1,2);   // 这个赋值的顺序和Java一样，都是从前往后依此赋值，所以此时就将1赋值给了a，2赋值给了c，此时的b是默认值undefined。
+    alert(result3);  // 此时输出的是: NaN。此时的加法运算是：1+2+undefined
+</script>
+</body>
+</html>

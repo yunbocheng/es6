@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let作用</title>
+</head>
+<body>
+<script>
+    {
+         a = 0;
+    }
+    alert(a);
+
+    /*这样写第二个会覆盖第一个的值，输出的是第二个i的值*/
+    var i = 1;
+    var i = 2;
+
+    /*使用let，必须保证变量名的唯一性，这样写是会报错的*/
+    let  b = 1;
+    let b = 2;
+    alert(i);
+</script>
+</body>
+</html>

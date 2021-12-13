@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rest参数</title>
+</head>
+<body>
+<script>
+    /*在es5中，存在一个获取函数实参的变量 arguments*/
+    /*arguments可以获取到该函数中所有的实参值*/
+    add = function (){
+        console.log(arguments);
+        /*arguments打印出来的并不是一个数组，而是一个Arguments对象*/
+    }
+/*
+    在箭头函数中使用 arguments会报arguments未定义错误，因为在es6中就没有arguments这个变量
+    add = () =>{
+        console.log(arguments);
+    }*/
+    add(1,2,3);
+
+    /*
+        在es6语法中，使用关键字rest代替了arguments来获取实参的数据
+        以下的 ...args 就是代表rest参数。
+    * */
+    /*
+        使用rest参数的好处，可以将用户给定的实参全部存储到一个数组中
+        这样就可以使用关于数组的一系列的方法。
+    * */
+    function date(...ages){
+        console.log(ages);
+        /*rest打印出来的是一个数组*/
+    }
+    date("张三","李四",`王五`);
+
+    /*注意：rest参数必须放到函数的所有参数的最后面*/
+    function fn(a,b,...args){
+        console.log(a);
+        console.log(b);
+        console.log(args);
+    }
+    fn(1,2,3,4,5); //输出结果：a=1,b=2,c=[3,4,5]
+
+
+    /*
+        argument打印出来不是一个数组，而是一个argument对象
+        而 rest 打印出来是一个数组。rest将用户传递的实参封装到了一个数组中
+    */
+</script>
+</body>
+</html>

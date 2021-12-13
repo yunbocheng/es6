@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS中的时间对象</title>
+</head>
+<body>
+<script>
+    /*获取当前系统时间*/
+/*    var date = new Date();
+    document.write(date);*/
+    // 修改为本地的日期显示格式
+
+    var data = new Date();
+    var s = data.toLocaleDateString();
+    document.write(s);
+
+    document.write("<font style='color: red'>天气不错！</font>")
+</script>
+<script>
+    function start(){
+        /*每个一秒调用一次getTime()函数，这个函数有一个返回值，有一个停止函数专门用来解说这个返回值从而停止这个函数的运行*/
+        /*这里我们不加var，代表此时的v是一个全局变量，这样不仅这个方法中可以使用这个变量，其他的函数中也可以使用这个变量*/
+        v = window.setInterval("getTime()",1000);
+    }
+    /*获取当前系统时间*/
+    function getTime(){
+        var date = new Date();
+        var time = date.toLocaleString();
+        /*获取div盒子，向div盒子中传入信息*/
+        var elementById = document.getElementById("myDiv");
+        elementById.innerText = time;
+    }
+    function stop(){
+        /*
+            这个方法用来接收周期调用函数的返回值进而停止
+            这里停止哪个时钟完全与传递的返回值有关，根据返回值来判断停止哪个时钟
+        * */
+        window.clearInterval(v);
+    }
+</script>
+<input type="button" id="myBut" onclick="start()" value="显示当前系统时间"/>
+<div id="myDiv"></div>
+<input type="button" id="myBut2" onclick="stop()" value="停止"/>
+
+<!--不加参数的时候使用默认的方式，在新窗口打开-->
+<input type="button" value="打开百度" onclick="window.open('https://baidu.com')">
+<!--_self在窗口打开-->
+<input type="button" value="打开百度(本窗口)" onclick="window.open('https://baidu.com','_self')">
+<!--_blank在新窗口打开-->
+<input type="button" value="打开百度(新窗口)" onclick="window.open('https://baidu.com','_blank')">
+</body>
+</html>

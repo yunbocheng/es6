@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扩展运算符的应用</title>
+</head>
+<body>
+    <script>
+        /*扩展运算符用于实参中，rest参数用于形参中*/
+        /*扩展运算符的作用，将数组转换为一个普通的数据列表*/
+        let arr = [`张三`,`李四`,`王五`];
+        date = (...args) => {
+            console.log(args);
+        }
+        date(...arr);  // 输出的结果是: ("张三","李四","王五") 将一个数组拆分为了三个数据
+
+
+        /*扩展运算符的应用场景*/
+        /* 1.数组的合并 */
+        const arr1 = [`小苹果`,`大苹果`];
+        const arr2 = [`中苹果`,`超大苹果`];
+        /*es5中拼接数组的方法，需要调用关于数组的方法*/
+        console.log(arr1.concat(arr2));  // ["小苹果","大苹果","中苹果","超大苹果"];
+        /*使用es6中的新特性：扩展运算符来拼接数组*/
+        console.log([...arr1,...arr2]);
+
+        /* 2.数组的克隆*/
+        const oldArr = [`E`,`G`,`M`];
+        const newArr = [...oldArr];
+        console.log(newArr); // ["E","G","M"];
+
+        /*扩展运算符可以将字符串转换为真正的数组。字符串其实就是字符数组的另一种形式*/
+        let array = [..."hello"];
+        console.log(array);  // console.log(r);
+
+    </script>
+</body>
+</html>

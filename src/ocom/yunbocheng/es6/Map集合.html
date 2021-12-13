@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map集合</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*
+    * ES6提供了Map数据结构。它类似于对象，也就是键值对的集合。但是“键”的范围不限于字符串
+    * (以前我们在Java中使用Map集合的时候，其中的键值都是字符串)，各种类型的值(包括对象)
+    * 都可以当作键值。Map也实现了iterator接口，所以可以使用扩展运算符以及for...of。
+    * Map本身也是一个对象，Map集合的属性和方法：
+    *   size() : 获取Map集合的长度
+    *   set(key) : 增加一个新元素，返回当前Map（在最后添加，只是改变原来集合中的数据，不会新创建一个集合）
+    *   get(key) : 返回键名对应的键值
+    *   has(key) : 检测集合中是否包含某个元素，返回boolean
+    *   clear() ： 清空集合
+    *   keys() : 获取map中包含的所有的key的迭代器(key的值)。获取到的是 Object对象，而不是一个包含所有key值的数组或者集合。
+    *   values() ： 也是获取map中包含的所有的value的迭代器(value的值)。用法和：keys()一样。
+    *   entries() ：entries()返回map里所有成员的遍历器，包含key、values
+    *
+    *  在ES6的Map集合中，key以及value的值非常的随意。使用什么类型都可以。
+    * */
+
+
+    /*创建一个Map集合*/
+    let map = new Map();
+    /*
+        以下是map集合初始化时的结构，其中参数是一个大的数组，每个数据是已键值对的方式存在的，他们存在于一个中括号中。
+        中括号中的 key以及value可以存储任意格式的数据。(数组、集合、字符串、数字、对象)
+    */
+    let map2 = new Map([[1,2],['name','b'],[3,4]]);
+    console.log(map2);
+    /*向map集合中添加一个key为字符串的元素*/
+    map.set("name","程云博");
+
+    /*向map集合中添加一个key为Number类型的元素*/
+    map.set(3,"李四");
+
+    /*向map集合中添加一个key为对象的元素*/
+    let school = `清华大学`;
+    let Student = {
+        /*使用简化创建对象的方式*/
+        school
+    }
+    map.set(Student,[`张三`,`李四`,`王五`]);
+
+    /*向map集合中添加一个key为数组的元素*/
+    let arr = [`兔子`,`老虎`,`狮子`];
+    map.set(arr,'数组');
+
+    /*向map集合中传递一个key为function方法的元素*/
+    let add = (a,b) => {
+        return a + b;
+    }
+    /*调用方法的时候使用add(),不使用这个 方法只是声明一下的时候使用 add*/
+    map.set(add,"这是一个方法");
+
+    /*向map集合中添加一个value值为一个函数的数据*/
+    subtraction = (a,b) =>{
+        return a - b;
+    }
+    map.set("减法",subtraction);
+    /*获取 map集合的长度*/
+    console.log(map.size);  // 6
+
+    /*根据key值删除指定的元素*/
+    /*
+        这个方法中加不加双引号要看这个key的类型，
+        如果是字符串就要加双引号，如果是Number、对象或者其他类型就不用加双引号。
+        在JS中，String也是普通数据类型。
+    */
+    let judge = map.delete("name");
+
+    console.log(judge);  // true
+    console.log(map.size);  // 5
+
+    /*通过get(key)的方式来获取对用的value值*/
+    let name = map.get(3);
+    console.log(name);  // 李四
+
+    let array = map.get(Student);
+    /*
+        此时的value是一个数组，这个数组没有实现iterator接口，
+        不可以使用for...of遍历。只可以使用普通的遍历方式进行遍历
+        for...i以及for...in等方式。
+    */
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+    }
+
+    /*判断某个元素在这个map集合集合中是否存在*/
+    let decide = map.has(arr);
+    console.log(decide); // true
+
+
+    let str = `arr1`;
+    /*在map集合中不存在arr1这个key，所以结果为 false*/
+    let decide1 = map.has(str);
+    console.log(decide1);  // false
+
+    /*因为map集合实现了iterator接口，所以可以使用for...of的方式进行遍历*/
+    for (let mapElement of map) {
+        /*遍历之后这些元素都是 Object类型的数据。其中都存在两个值 key以及value*/
+        /*这些key以及value中可能存在数据以及方法，可以遍历数组也可以调用这个方法*/
+        console.log(mapElement ,typeof mapElement);
+    }
+
+    /* mapElement的解构赋值就是[key,value]*/
+    /*使用解构赋值的方式来遍历Map集合。使用解构赋值可以一次性的取到map集合的key以及value值*/
+    for (let [key,value] of map) {
+        alert(`${key} , ${value}`);
+    }
+
+    /*获取到map集合中的value值(减法运算的函数)，并使用这个函数处理业务*/
+    /*第一步：先通过map中的get()方法来获取减法函数*/
+    let sb = map.get("减法");
+    console.log(sb);
+    /*第二步：使用这个减法函数来处理业务*/
+    let result = sb(4,1);
+    alert(result);
+
+    /*获取到map中元素的 key 值,返回值是并不是一个数组，而是一个Object类型的数据*/
+    let keys = map.keys();
+    /*
+        alert(keys[0]);
+        keys不是一个数组，而是一个Object对象，不存在下标值。
+    */
+
+    let array2;
+    let method;
+    console.log(typeof keys);  // Object
+    for (let key of keys){
+        /*这里需要匹配的是key值*/
+        if (key === arr ){
+            array2 = key;
+        }
+        if (key === add){
+            method = key;
+        }
+    }
+
+    /*遍历array2这个数组*/
+    for (let i = 0; i < array2.length; i++) {
+        alert(array2[i]);  // 兔子 老虎 狮子
+    }
+
+    /* 使用扩展运算符的方式，将使用values()方法或者keys()方法获取到的Object对象转换为一个数组，这样就可以使用数组下标来获取相应的value以及key值*/
+    /* 注意：这里转换的并不是一个一个数组，而是一个Object对象。将一个Object使用扩展运算符转换为一个数组*/
+    let arrayKeys = [...map.keys()];
+    /*此时就将所有的key值从一个Object对象转化为了一个数组*/
+    console.log(arrayKeys,typeof arrayKeys);  // Array数组
+    /*获取第一个value值*/
+    let first = arrayKeys[0];
+
+
+    /*
+    * 使用map集合中 key值对应的加法函数
+    * */
+    let sum = method(10,10);
+    alert(sum);   // 20
+
+    /*entries()返回map里所有成员的遍历器，包含key、values*/
+
+    /*清空map集合*/
+    map.clear();
+    console.log(map);  // {}
+    console.log(map.size);  // 0
+
+</script>
+</body>
+</html>

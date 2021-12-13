@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+<script>
+  /*箭头函数的语法格式
+  *     let 函数名 = () => {
+  *             函数体...
+  *         }
+  * */
+  /*注意：在JS中函数的参数不用指定类型，但是在java的方法中必须指定类型*/
+  let add = (a,b) => {
+      return a + b;
+  }
+
+  let result = add(1,2);
+
+  console.log(result);
+
+  /*箭头函数的几种写法*/
+  /*第一种：当函数没有参数的时候，小括号不可以省略*/
+  let add1 = () => {
+      alert(`无参数的箭头函数！`);
+  }
+  add1();
+  /*第二种：当只存在一个参数的时候，小括号可以省略*/
+  let add2 = n => {
+      return n*n;
+  }
+  let result1 = add2(2);
+  console.log(result1);
+
+  /*第三种：当函数体中只有一句代码的时候，可以省略花括号
+  *     如果这一句代码是 return语句的话，需要省略return  而且语句的执行结果就是函数的返回值
+  *
+  * 也可以是其他的语句，比如下边的alert语句
+  * */
+  let add3 = () => alert(1);
+  add3();
+
+  let add4 = n => n*n;
+  let result2 = add4(8);
+  console.log(result2)
+
+  /*箭头函数有几个使用注意点：
+  *     1. 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+  *     2. 不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+  *     3. 不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以使用Rest参数代替。
+  *
+  * */
+</script>
+</body>
+</html>

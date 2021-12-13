@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多选框的全选与取消</title>
+</head>
+<body>
+
+<script>
+    /*点击全选按钮完成信息的全部选择与取消*/
+    window.onload = function (){
+        var checkAll = document.getElementById("All");
+        var checkOther = document.getElementsByName("myChe");
+        checkAll.onclick = function (){
+            /*调用多选框对象的一个方法，当这个方法返回true的时候代表选中，false的时候代表没有选中*/
+            /*此时代表选项全部被选中*/
+            for (var i = 0; i < checkOther.length;i++){
+                checkOther[i].checked = checkAll.checked;
+            }
+        }
+        /*当用户将所有的选项全部选中的时候，应该自动将全选也选中*/
+        /*使用循环，将每个选项绑上单机事件*/
+        /*这里存在两个循环，第一个循环是给每一个选项绑定单机事件的，第二个循环是记录当前情况下有几个选项被选项*/
+        for (var i = 0;i<checkOther.length;i++){
+            var all = checkOther.length;
+            checkOther[i].onclick = function (){
+                /*这个循环是判断此时的都有那些选项被选中*/
+                /*定义一个变量，这个变量是一个计数器，用来记录有多少个选项别选中*/
+                var count = 0;
+                for (var i = 0;i<checkOther.length;i++){
+                    /*当选中被选中的时候对count进行加1，当count的数量等于选项的总长度的时候，说明此时用户将全部的选项选中了*/
+                    if (checkOther[i].checked){
+                        count++;
+                    }
+                }
+                /*此时说明用户将全部的选中都选中了*/
+                checkAll.checked = (count == all);
+            }
+        }
+    }
+</script>
+    <!--定义一个多选框-->
+    <input type="checkbox" id="All" value="全选">全选
+    <input type="checkbox" name="myChe" value="抽烟"/>抽烟
+    <input type="checkbox" name="myChe" value="喝酒"/>喝酒
+    <input type="checkbox" name="myChe" value="烫头"/>烫头
+</body>
+</html>

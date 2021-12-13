@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模块化</title>
+</head>
+<body>
+<script type="text/javascript">
+  /*
+  * 模块化是指将一个大的程序文件，拆分成多个小的文件，然后将小的文件组合起来。
+  * 其中的模块就是小文件。
+  *
+  * 模块化的好处：
+  *     1. 防止命名冲突
+  *     2. 代码复用
+  *     3. 高维护性
+  *
+  *  ES6模块化语法：
+  *     模块功能主要由两个命令构成: export 和 import
+  *         export命令用于规定模块的对外接口。
+  *         import命令用于输入其他模块提供的功能。
+  * */
+</script>
+<!--注意：这里使用模块形式的时候，这个type属性值要使用 module-->
+<script type="module">
+
+    // 1. 通用的导入方式，这种方式三种模块化形式都可以导入。
+
+    /* 引入外部的JS代码，使用命令 import */
+    /* 引入模块化_分别暴露.js 模块内容。as代表起别名，m1是自定义的 */
+    import * as m1 from './模块化_分别暴露.js';
+    console.log(m1);
+    console.log(m1.school); // 清华大学
+
+    /* 引入模块化_统一暴露.js 模块内容*/
+    import * as m2 from './模块化_统一暴露.js';
+    console.log(m2);
+
+
+    /* 引入模块化_默认暴露.js 模块内容*/
+    import * as m3 from './模块化_默认暴露.js';
+    console.log(m3);
+    /*
+        注意：使用默认暴露的时候，所有被暴露的信息会封装在一个default中。
+        如果想要调用其中的方法，需要在点一层default
+    */
+    m3.default.change();
+
+    // 2. 解构赋值形式 可以导入三种暴露形式。
+    import {school,teach} from "./模块化_分别暴露.js";
+    /* 当解构中的实参名有重复的时候，可以使用别名的方式 */
+    import {school as school1,finJob} from "./模块化_统一暴露.js";
+    // 这个是接收默认暴露形式的写法，固定写法，因为所有的暴露信息都被封装到了一个default的Object对象中
+    // 需要给default一个别名，不可以直接使用 default
+    import {default as m4} from './模块化_默认暴露.js';
+    m4.change();
+
+    // 3. 简便形式 这个只导入 默认暴露的形式
+    import m5 from './模块化_默认暴露.js';
+    console.log(m5);
+</script>
+</body>
+</html>

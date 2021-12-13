@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解构赋值的应用</title>
+</head>
+<body>
+<script type="text/javascript">
+  // 1. 交换变量
+  let [x,y] = [111,222];
+  [x,y] = [y,x];
+  console.log([x,y]);  // [222,111]
+
+  // 2. 获取函数的多个返回值
+
+  /*返回的是一个数组*/
+  function example(){
+      return [1,2,3];
+  }
+  /*数组的这个元素名可以自定义*/
+  let [a,b,c] = example();
+  console.log(a);
+  console.log(b);
+  console.log(c);
+
+  /*返回的是一个对象*/
+  function example1(){
+      /*匿名*/
+      return {
+          name:'cyb',
+          age:20
+      }
+  }
+  /*这个参数名必须与对象中的属性名一致。否则会找不到报undefined*/
+  let {name,age} = example1();
+  console.log(name);
+  console.log(age);
+
+  /*字符串的解构赋值，可以把字符串看作是一个字符数组*/
+  let [r,t,w,u,i] = "hello"
+  console.log(r);
+  console.log(t);
+  console.log(w);
+  console.log(u);
+  console.log(i);
+</script>
+</body>
+</html>
