@@ -127,6 +127,22 @@
         alert(keys[0]);
         keys不是一个数组，而是一个Object对象，不存在下标值。
     */
+    alert('111' + keys[0]);  // 输出的结果为 111undefined
+
+    // 重点：当keys()方法操作的是一个对象的时候，返回值是一个集合。
+    // 如果想要遍历这个对象，需要将这个Object对象使用扩展运算符转换为一个数组进行遍历。
+    // Object.keys(对象) : Object.keys(对象) 这个方法只能用于获取对象的key值，不可以应用于map集合。
+    // 因为Object.keys(对象) 方法中只能传递对象，而不能传递集合。
+
+    let Person = {
+        name:"程云博",
+        age:20
+    }
+
+    let strings = Object.keys(Person);
+    for (let string of strings) {
+        alert('111' + string);
+    }
 
     let array2;
     let method;
