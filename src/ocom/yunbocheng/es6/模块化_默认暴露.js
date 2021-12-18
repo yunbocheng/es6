@@ -4,5 +4,12 @@ export default {
     school:"北京大学",
     change:function (){
         console.log("我们可以改变你！");
+    },
+
+    /* 这个定义的也是一个函数，使用的对象中函数的简化写法。*/
+    data(){
+      return{
+          msg:"hello"
+      }
     }
 }
